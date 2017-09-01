@@ -1,0 +1,18 @@
+# Compiled
+dist/
+
+# Coverage directory used by tools like istanbul
+coverage
+.coverage
+
+# Dependency directory
+node_modules/
+
+# Bundled assets
+public/bundles/
+
+# package lock until NPM is fixed
+package-lock.json
+
+# logs
+logs/
