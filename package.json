@@ -1,7 +1,7 @@
 {
-  "name": "react-boilerplate",
-  "version": "1.0.0",
-  "description": "a react boilerplate, again",
+  "name": "supermoube",
+  "version": "0.0.0",
+  "description": "a 42 project everythinger",
   "main": "index.js",
   "scripts": {
     "start": "nodemon server/index.js",
@@ -11,7 +11,7 @@
   },
   "keywords": [
     "react",
-    "boilerplate"
+    "42"
   ],
   "author": "jde-maga",
   "license": "ISC",
