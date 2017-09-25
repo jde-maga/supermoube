@@ -1,17 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   index.js                                           :+:      :+:    :+:   */
+/*   user.js                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Julien de Magalhaes <julien@cinq-s.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/01 15:16:46 by Julien de M       #+#    #+#             */
-/*   Updated: 2017/09/25 17:04:24 by Julien de M      ###   ########.fr       */
+/*   Created: 2017/09/25 17:38:22 by Julien de M       #+#    #+#             */
+/*   Updated: 2017/09/25 17:42:59 by Julien de M      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-require('babel-polyfill');
+const userHelper = require('../helper/user');
 
-require('./init/logger.js');
-require('./init/passport.js');
-require('./init/express.js');
+const getUser = async (req, res) => {
+  try {
+    const ret = await userHelper.getUser();
+    console.log(ret);
+    res.end(ret);
+  } catch (err) {
+    console.log(err);
+    res.end(err);
+  }
+};
+
+module.exports = {
+  getUser,
+};

@@ -6,7 +6,7 @@
 /*   By: Julien de Magalhaes <julien@cinq-s.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/01 15:17:07 by Julien de M       #+#    #+#             */
-/*   Updated: 2017/09/01 16:13:32 by Julien de M      ###   ########.fr       */
+/*   Updated: 2017/09/25 17:16:23 by Julien de M      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-
 const logger = require('./logger.js');
+const cors = require('cors');
+const morgan = require('morgan');
+const passport = require('passport');
 
 const app = express();
 
@@ -40,6 +42,17 @@ app.set('showStackError', true);
 app.set('root', '/');
 app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'ejs');
+
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false },
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(cors());
+app.use(morgan('dev'));
 app.use('/public', express.static(path.join(__dirname, '../../public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
