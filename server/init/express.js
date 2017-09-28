@@ -6,7 +6,7 @@
 /*   By: Julien de Magalhaes <julien@cinq-s.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/01 15:17:07 by Julien de M       #+#    #+#             */
-/*   Updated: 2017/09/25 17:16:23 by Julien de M      ###   ########.fr       */
+/*   Updated: 2017/09/26 17:31:14 by Julien de M      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,13 @@ app.set('showStackError', true);
 app.set('root', '/');
 app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'ejs');
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
+
 
 app.use(session({
   secret: 'keyboard cat',

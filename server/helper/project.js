@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   user.js                                            :+:      :+:    :+:   */
+/*   project.js                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Julien de Magalhaes <julien@cinq-s.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/25 17:38:22 by Julien de M       #+#    #+#             */
-/*   Updated: 2017/09/26 10:54:12 by Julien de M      ###   ########.fr       */
+/*   Created: 2017/09/26 13:49:07 by Julien de M       #+#    #+#             */
+/*   Updated: 2017/09/26 14:22:11 by Julien de M      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-const userHelper = require('../helper/user');
+const axios = require('axios');
 
-const getUser = async (req, res) => {
-  try {
-    const ret = await userHelper.getUser(req.user.accessToken);
-    res.send(ret);
-  } catch (err) {
-    console.log(err);
-    res.sendStatus(500);
-  }
+const api42 = axios.create({
+  baseURL: 'https://api.intra.42.fr/v2',
+});
+
+const getAll = async ({ token }) => {
+  const res = await api42.get('projects_users', {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return res.data;
 };
 
 module.exports = {
-  getUser,
+  getAll,
 };

@@ -8,7 +8,7 @@ passport.use(
   new Passport42Strategy({
     clientID: keys.uid,
     clientSecret: keys.secret,
-    callbackURL: 'http://127.0.0.1:8080/auth/redirect',
+    callbackURL: 'http://127.0.0.1:8080/login/redirect',
   }, (accessToken, refreshToken, profile, cb) => {
     cb(null, { accessToken, refreshToken });
   }),
