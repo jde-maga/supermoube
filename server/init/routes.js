@@ -6,7 +6,7 @@
 /*   By: Julien de Magalhaes <julien@cinq-s.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/01 15:38:53 by Julien de M       #+#    #+#             */
-/*   Updated: 2017/10/02 17:23:08 by Julien de M      ###   ########.fr       */
+/*   Updated: 2017/10/02 18:02:31 by Julien de M      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ router.get('/login/redirect',
 
 router.get('/me', (req, res) => { res.send(req.user); });
 
-router.get('/api/getRecentProjects', projectController.getRecentProjects);
+router.get('/api/getRecentProjects', projectController.recentProjects);
 router.get('/api/getAllProjects', projectController.getAll);
 router.get('/api/getAllStudents', studentController.getAll);
 

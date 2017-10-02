@@ -6,7 +6,7 @@
 /*   By: Julien de Magalhaes <julien@cinq-s.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/01 15:17:07 by Julien de M       #+#    #+#             */
-/*   Updated: 2017/09/26 17:31:14 by Julien de M      ###   ########.fr       */
+/*   Updated: 2017/10/02 17:54:28 by Julien de M      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const logger = require('./logger.js');
 const cors = require('cors');
 const morgan = require('morgan');
 const passport = require('passport');
+
+const logger = require('../lib/logger');
 
 const app = express();
 

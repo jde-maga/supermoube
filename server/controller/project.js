@@ -6,36 +6,42 @@
 /*   By: Julien de Magalhaes <julien@cinq-s.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 13:47:05 by Julien de M       #+#    #+#             */
-/*   Updated: 2017/10/02 16:54:02 by Julien de M      ###   ########.fr       */
+/*   Updated: 2017/10/02 18:02:31 by Julien de M      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+const logger = require('../lib/logger');
+
 const projectHelper = require('../helper/project');
 
-const getAll = async (req, res) => {
+const getAll = async (req, res, next) => {
+  logger.verbose(`${req.user.accessToken} requested /api/getAllProjects`);
   try {
-    const ret = await projectHelper.getAll({
+    const projects = await projectHelper.getAll({
       token: req.user.accessToken,
     });
-    res.send(ret);
+    logger.verbose(`${req.user.accessToken} success /api/getAllProjects : ${res}`);
+    return res.json(projects);
   } catch (err) {
-    res.sendStatus(500);
+    return next(err);
   }
 };
 
-const getRecentProjects = async (req, res) => {
+const recentProjects = async (req, res, next) => {
   try {
-    const ret = await projectHelper.getRecentProjects({
+    logger.verbose(`${req.user.accessToken} requested /api/getRecentProjects`);
+    const projects = await projectHelper.recentProjects({
       token: req.user.accessToken,
       query: req.query,
     });
-    res.send(ret);
+    logger.verbose(`${req.user.accessToken} success /api/getRecentProjects : ${res}`);
+    return res.json(projects);
   } catch (err) {
-    res.sendStatus(500);
+    return next(err);
   }
 };
 
 module.exports = {
-  getRecentProjects,
+  recentProjects,
   getAll,
 };

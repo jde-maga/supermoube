@@ -6,7 +6,7 @@
 /*   By: Julien de Magalhaes <julien@cinq-s.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 13:49:07 by Julien de M       #+#    #+#             */
-/*   Updated: 2017/10/02 16:54:02 by Julien de M      ###   ########.fr       */
+/*   Updated: 2017/10/02 18:02:31 by Julien de M      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ const api42 = axios.create({
   baseURL: 'https://api.intra.42.fr/v2',
 });
 
-const getRecentProjects = async ({ token, query }) => {
+const recentProjects = async ({ token, query }) => {
   const params = queryString.stringify(query);
   const res = await api42.get(`projects_users?${params}`, {
     headers: { Authorization: `Bearer ${token}` },
@@ -34,6 +34,6 @@ const getAll = async ({ token }) => {
 
 
 module.exports = {
-  getRecentProjects,
+  recentProjects,
   getAll,
 };
