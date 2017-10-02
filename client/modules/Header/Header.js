@@ -6,7 +6,7 @@
 /*   By: Julien de Magalhaes <julien@cinq-s.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 14:54:10 by Julien de M       #+#    #+#             */
-/*   Updated: 2017/10/02 14:54:44 by Julien de M      ###   ########.fr       */
+/*   Updated: 2017/10/02 15:47:32 by Julien de M      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ class Header extends Component {
   }
 
   changeTab = (e, val) => {
+    if (this.state.currentTab === val) return;
     let path;
     if (val === 0) path = '/';
     if (val === 1) path = '/user';
@@ -72,7 +73,13 @@ class Header extends Component {
             <Tab label="Projets" icon={<FontAwesome name="database" />} />
             <Tab label="Compétences" icon={<FontAwesome name="briefcase" />} />
           </Tabs>
-          <Button color="contrast" className={classes.loginButton}>Login@42</Button>
+          <Button
+            color="contrast"
+            className={classes.loginButton}
+            onClick={() => { window.location.href = '/login'; }}
+          >
+            Login@42
+          </Button>
         </Toolbar>
       </AppBar>
     );

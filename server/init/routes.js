@@ -6,7 +6,7 @@
 /*   By: Julien de Magalhaes <julien@cinq-s.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/01 15:38:53 by Julien de M       #+#    #+#             */
-/*   Updated: 2017/10/02 10:49:56 by Julien de M      ###   ########.fr       */
+/*   Updated: 2017/10/02 16:02:18 by Julien de M      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ const router = express.Router();
 router.get('/login', passport.authenticate('42'));
 router.get('/login/redirect',
   passport.authenticate('42', { failureRedirect: '/ping' }),
-  (req, res) => res.redirect('/user'),
+  (req, res) => res.redirect('/'),
 );
 
 router.get('/me', (req, res) => {
-  console.log(req.user);
   res.send(req.user);
 });
 
 router.get('/recentProjects', projectController.getAll);
 router.get('/getAllUsers', userController.getAll);
+router.get('/getAllProjects', projectController.getAllProjects);
 
 router.get('/ping', (req, res) => res.json('Pong.'));
 router.get('*', ensureLoggedIn(), (req, res) => res.render('index'));

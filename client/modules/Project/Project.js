@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   User.js                                            :+:      :+:    :+:   */
+/*   Project.js                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Julien de Magalhaes <julien@cinq-s.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/02 14:53:48 by Julien de M       #+#    #+#             */
-/*   Updated: 2017/10/02 15:03:04 by Julien de M      ###   ########.fr       */
+/*   Created: 2017/10/02 14:54:04 by Julien de M       #+#    #+#             */
+/*   Updated: 2017/10/02 16:05:48 by Julien de M      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,38 +15,36 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withStyles } from 'material-ui';
 
-import { getAllUsers } from '../../redux/actions/user';
+import ProjectTable from './ProjectTable';
+import { getAllProjects } from '../../redux/actions/project';
+import { ProjectStyle, styles } from './projectStyle';
 
-import UserTable from './UserTable';
-
-import { UserStyle, style } from './userStyle';
-
-@withStyles(style)
+@withStyles(styles)
 @connect((state) => ({
-  users: state.user.get('users'),
+  projects: state.project.get('projects'),
 }), {
-  getAllUsers,
+  getAllProjects,
 })
-class User extends Component {
+class Project extends Component {
   static propTypes = {
-    getAllUsers: PropTypes.func.isRequired,
-    users: PropTypes.object.isRequired,
+    getAllProjects: PropTypes.func.isRequired,
+    projects: PropTypes.object.isRequired,
     classes: PropTypes.object.isRequired,
-  };
+  }
 
   componentDidMount() {
-    this.props.getAllUsers();
+    this.props.getAllProjects();
   }
 
   render() {
-    const { users, classes } = this.props;
-    
+    const { projects, classes } = this.props;
+
     return (
-      <UserStyle>
-        <UserTable classes={classes} users={users} />
-      </UserStyle>
+      <ProjectStyle>
+        <ProjectTable classes={classes} projects={projects} />
+      </ProjectStyle>
     );
   }
 }
 
-export default User;
+export default Project;

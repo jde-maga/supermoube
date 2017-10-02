@@ -6,12 +6,13 @@
 /*   By: Julien de Magalhaes <julien@cinq-s.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 14:54:18 by Julien de M       #+#    #+#             */
-/*   Updated: 2017/10/02 14:54:44 by Julien de M      ###   ########.fr       */
+/*   Updated: 2017/10/02 16:05:10 by Julien de M      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-import React, { Component } from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { BrowserRouter, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
 
@@ -24,6 +25,7 @@ import store from '../redux/store';
 import Header from './Header/Header';
 import Main from './Main/Main';
 import User from './User/User';
+import Project from './Project/Project';
 
 //injectTapEventPlugin(); // Needed for onTouchTap http://stackoverflow.com/a/34015469/988941
 
@@ -42,6 +44,10 @@ const MainApp = ({ children }) => (
   </div>
 );
 
+MainApp.propTypes = {
+  children: PropTypes.object.isRequired,
+};
+
 const App = () => (
   <AppContainer>
     <MuiThemeProvider theme={createMuiTheme()}>
@@ -50,6 +56,7 @@ const App = () => (
           <MainApp>
             <Route exact path="/" component={Main} />
             <Route path="/user" component={User} />
+            <Route path="/projects" component={Project} />
           </MainApp>
         </BrowserRouter>
       </Provider>

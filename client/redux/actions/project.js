@@ -11,4 +11,10 @@ export const getRecentProjects = () => (dispatch) => {
   }));
 };
 
-export const ping = createAction('PING');
+const getAllProjectsAPI = createAction('API:GET_ALL_PROJECTS');
+export const getAllProjects = () => (dispatch) => {
+  dispatch(getAllProjectsAPI({
+    method: 'get',
+    endpoint: '/getAllProjects',
+  }));
+};
