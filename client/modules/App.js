@@ -1,5 +1,17 @@
-import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   App.js                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: Julien de Magalhaes <julien@cinq-s.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/02 14:54:18 by Julien de M       #+#    #+#             */
+/*   Updated: 2017/10/02 14:54:44 by Julien de M      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+import React, { Component } from 'react';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
 
@@ -15,19 +27,33 @@ import User from './User/User';
 
 //injectTapEventPlugin(); // Needed for onTouchTap http://stackoverflow.com/a/34015469/988941
 
+const MainApp = ({ children }) => (
+  <div>
+    <Header />
+    <div
+      style={{
+        position: 'absolute',
+        top: '72px',
+        width: '100%',
+      }}
+    >
+      {children}
+    </div>
+  </div>
+);
+
 const App = () => (
   <AppContainer>
-    <Provider store={store}>
-      <BrowserRouter>
-        <MuiThemeProvider theme={createMuiTheme()}>
-          <div>
-            <Header />
+    <MuiThemeProvider theme={createMuiTheme()}>
+      <Provider store={store}>
+        <BrowserRouter>
+          <MainApp>
             <Route exact path="/" component={Main} />
             <Route path="/user" component={User} />
-          </div>
-        </MuiThemeProvider>
-      </BrowserRouter>
-    </Provider>
+          </MainApp>
+        </BrowserRouter>
+      </Provider>
+    </MuiThemeProvider>
   </AppContainer>
 );
 

@@ -1,10 +1,11 @@
 import { createAction } from 'redux-actions';
-import axios from 'axios';
 
-const apiGetMe = createAction('GET_ME');
-export const getMe = () => async (dispatch) => {
-  const auth = await axios.get('/me');
-  dispatch(apiGetMe(auth.data));
+const getMeAPI = createAction('API:GET_ME');
+export const getMe = () => (dispatch) => {
+  dispatch(getMeAPI({
+    method: 'get',
+    endpoint: '/me',
+  }));
 };
 
 export const ping = createAction('PING');

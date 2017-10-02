@@ -1,47 +1,44 @@
-
-/**
- * Dependencies
- */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   api.js                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: Julien de Magalhaes <julien@cinq-s.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/09/29 11:26:19 by Julien de M       #+#    #+#             */
+/*   Updated: 2017/09/29 12:27:12 by Julien de M      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 import queryString from 'query-string';
 import axios from 'axios';
 
-/**
- * Middleware
- */
-
-const apiMiddleware = store => next => async (action) => {
+const apiMiddleware = (store) => (next) => async (action) => {
   if (!action.type.startsWith('API:')) return next(action);
 
   const prefix = action.type.split(':')[1];
-  const { method = 'get', body, query, args, onSucceeded, onFailed } = action.payload;
-  let { endpoint } = action.payload;
-  const state = store.getState();
-  const { me } = state;
-  const token = me.get('accessToken');
+  const { method = 'get', body, query, onSucceeded, onFailed } = action.payload;
+  let url = action.payload.endpoint;
   const options = {
     method,
     headers: {},
   };
 
-  if (token) options.headers.Authorization = `Bearer ${token}`;
   if (query) {
     const params = queryString.stringify(query);
-    endpoint = `${endpoint}?${params}`;
+    url = `${url}?${params}`;
   }
   if (body) options.body = JSON.stringify(body);
   store.dispatch({ type: prefix });
 
   try {
-    const apiUrl = 'https://api.intra.42.fr/v2';
-    const response = await fetch('https://api.intra.42.fr/v2/projects_users', options);
-
+    const response = await axios({ ...options, url });
     const isNetworkError = response.status < 200 || response.status >= 300;
-    const data = await response.json();
+    const { data } = response;
     const isAPIError = data.code < 200 || data.code >= 300 || data.status === 'error';
 
     const type = isNetworkError || isAPIError ? `$FAIL:${prefix}` : `SUCCESS:${prefix}`;
-    store.dispatch({ type, payload: { ...data, args } });
+    store.dispatch({ type, payload: data });
     if (onSucceeded && !isAPIError) onSucceeded(data);
     if (onFailed && isAPIError) onFailed(data);
 

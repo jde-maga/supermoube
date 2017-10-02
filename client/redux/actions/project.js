@@ -1,10 +1,13 @@
 import { createAction } from 'redux-actions';
 
-const GetRecentProjectsAPI = createAction('API:GET_RECENT_PROJECTS');
+const getRecentProjectsAPI = createAction('API:GET_RECENT_PROJECTS');
 export const getRecentProjects = () => (dispatch) => {
-  dispatch(GetRecentProjectsAPI({
+  dispatch(getRecentProjectsAPI({
     method: 'get',
-    endpoint: '/projects_users',
+    endpoint: '/recentProjects',
+    query: {
+      sort: '-updated_at',
+    },
   }));
 };
 

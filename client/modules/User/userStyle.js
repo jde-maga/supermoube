@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   headerStyle.js                                     :+:      :+:    :+:   */
+/*   userStyle.js                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Julien de Magalhaes <julien@cinq-s.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/02 14:54:06 by Julien de M       #+#    #+#             */
-/*   Updated: 2017/10/02 14:54:44 by Julien de M      ###   ########.fr       */
+/*   Created: 2017/10/02 14:53:53 by Julien de M       #+#    #+#             */
+/*   Updated: 2017/10/02 14:53:54 by Julien de M      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-const styles = (theme) => ({
-  appBar: {
-    position: 'fixed',
-  },
-  loginButton: {
-    position: 'absolute',
-    right: '30px',
-  },
-  tabMenu: {
-    marginLeft: '30px',
-  },
+import glamorous from 'glamorous';
+
+export const UserStyle = glamorous.div({
+  display: 'flex',
+  justifyContent: 'center',
 });
 
-export default styles;
+export const style = (theme) => ({
+  paper: {
+    width: '60%',
+    marginTop: theme.spacing.unit * 3,
+    overflow: 'auto',
+  },
+});

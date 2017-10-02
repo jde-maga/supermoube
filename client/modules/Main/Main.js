@@ -1,49 +1,48 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Main.js                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: Julien de Magalhaes <julien@cinq-s.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/02 14:54:04 by Julien de M       #+#    #+#             */
+/*   Updated: 2017/10/02 14:54:44 by Julien de M      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { withStyles } from 'material-ui';
 
-import { Table, Paper, withStyles } from 'material-ui';
-import { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
-
+import RecentProjects from './RecentProjects';
 import { getRecentProjects } from '../../redux/actions/project';
-
-import styles from './mainStyle';
+import { MainStyle, styles } from '../Main/mainStyle';
 
 @withStyles(styles)
+@connect((state) => ({
+  recentProjects: state.project.get('recentProjects'),
+}), {
+  getRecentProjects,
+})
 class Main extends Component {
   static propTypes = {
+    getRecentProjects: PropTypes.func.isRequired,
+    recentProjects: PropTypes.object.isRequired,
     classes: PropTypes.object.isRequired,
   }
 
   componentDidMount() {
-    getRecentProjects();
+    this.props.getRecentProjects();
   }
 
   render() {
-    const { classes } = this.props;
+    const { recentProjects, classes } = this.props;
 
     return (
-      <Paper className={classes.paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Dessert (100g serving)</TableCell>
-              <TableCell numeric>Calories</TableCell>
-              <TableCell numeric>Fat (g)</TableCell>
-              <TableCell numeric>Carbs (g)</TableCell>
-              <TableCell numeric>Protein (g)</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <TableRow key="1">
-              <TableCell>ok</TableCell>
-              <TableCell numeric>ko</TableCell>
-              <TableCell numeric>ok</TableCell>
-              <TableCell numeric>ko</TableCell>
-              <TableCell numeric>ok</TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </Paper>
+      <MainStyle>
+        <RecentProjects classes={classes} recentProjects={recentProjects} />
+      </MainStyle>
     );
   }
 }
