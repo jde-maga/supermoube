@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   User.js                                            :+:      :+:    :+:   */
+/*   Student.js                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Julien de Magalhaes <julien@cinq-s.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 14:53:48 by Julien de M       #+#    #+#             */
-/*   Updated: 2017/10/02 15:03:04 by Julien de M      ###   ########.fr       */
+/*   Updated: 2017/10/02 17:32:11 by Julien de M      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,38 +15,38 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withStyles } from 'material-ui';
 
-import { getAllUsers } from '../../redux/actions/user';
+import { getAllStudents } from '../../redux/actions/student';
 
-import UserTable from './UserTable';
+import StudentTable from './StudentTable';
 
-import { UserStyle, style } from './userStyle';
+import { StudentStyle, style } from './studentStyle';
 
 @withStyles(style)
 @connect((state) => ({
-  users: state.user.get('users'),
+  students: state.student.get('students'),
 }), {
-  getAllUsers,
+  getAllStudents,
 })
-class User extends Component {
+class Student extends Component {
   static propTypes = {
-    getAllUsers: PropTypes.func.isRequired,
-    users: PropTypes.object.isRequired,
+    getAllStudents: PropTypes.func.isRequired,
+    students: PropTypes.object.isRequired,
     classes: PropTypes.object.isRequired,
   };
 
   componentDidMount() {
-    this.props.getAllUsers();
+    this.props.getAllStudents();
   }
 
   render() {
-    const { users, classes } = this.props;
+    const { students, classes } = this.props;
     
     return (
-      <UserStyle>
-        <UserTable classes={classes} users={users} />
-      </UserStyle>
+      <StudentStyle>
+        <StudentTable classes={classes} students={students} />
+      </StudentStyle>
     );
   }
 }
 
-export default User;
+export default Student;

@@ -6,7 +6,7 @@
 /*   By: Julien de Magalhaes <julien@cinq-s.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 14:54:10 by Julien de M       #+#    #+#             */
-/*   Updated: 2017/10/02 15:47:32 by Julien de M      ###   ########.fr       */
+/*   Updated: 2017/10/02 17:30:51 by Julien de M      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,19 @@ class Header extends Component {
     classes: PropTypes.object.isRequired,
   };
 
-  state = {
-    currentTab: 0,
-    redirect: false,
-    path: '/',
-  };
+  constructor(props) {
+    super(props);
+    const url = String(window.location.href);
+    let path = 0;
+    if (url.match(/student/)) path = 1;
+    if (url.match(/projects/)) path = 2;
+    if (url.match(/skills/)) path = 3;
+    this.state = {
+      currentTab: path,
+      redirect: false,
+      path: '/',
+    };
+  }
 
   componentWillUpdate(nP, nS) {
     if (nS.redirect && this.state.redirect) {
@@ -48,7 +56,7 @@ class Header extends Component {
     if (this.state.currentTab === val) return;
     let path;
     if (val === 0) path = '/';
-    if (val === 1) path = '/user';
+    if (val === 1) path = '/student';
     if (val === 2) path = '/projects';
     if (val === 3) path = '/skills';
     this.setState({ currentTab: val, redirect: true, path });

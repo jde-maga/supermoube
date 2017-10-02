@@ -6,7 +6,6 @@ import App from './modules/App';
 
 const MOUNT_NODE = document.getElementById('react-index-root');
 
-
 const renderRoots = () => {
   render(
     <App />,

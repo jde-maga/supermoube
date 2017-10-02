@@ -6,7 +6,7 @@
 /*   By: Julien de Magalhaes <julien@cinq-s.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/01 15:38:53 by Julien de M       #+#    #+#             */
-/*   Updated: 2017/10/02 16:02:18 by Julien de M      ###   ########.fr       */
+/*   Updated: 2017/10/02 17:23:08 by Julien de M      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@ const passport = require('passport');
 const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 
 const projectController = require('../controller/project');
-const userController = require('../controller/user');
+const studentController = require('../controller/student');
 
 const router = express.Router();
 
@@ -25,13 +25,11 @@ router.get('/login/redirect',
   (req, res) => res.redirect('/'),
 );
 
-router.get('/me', (req, res) => {
-  res.send(req.user);
-});
+router.get('/me', (req, res) => { res.send(req.user); });
 
-router.get('/recentProjects', projectController.getAll);
-router.get('/getAllUsers', userController.getAll);
-router.get('/getAllProjects', projectController.getAllProjects);
+router.get('/api/getRecentProjects', projectController.getRecentProjects);
+router.get('/api/getAllProjects', projectController.getAll);
+router.get('/api/getAllStudents', studentController.getAll);
 
 router.get('/ping', (req, res) => res.json('Pong.'));
 router.get('*', ensureLoggedIn(), (req, res) => res.render('index'));

@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mainStyle.js                                       :+:      :+:    :+:   */
+/*   student.js                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Julien de Magalhaes <julien@cinq-s.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/02 14:54:01 by Julien de M       #+#    #+#             */
-/*   Updated: 2017/10/02 14:54:44 by Julien de M      ###   ########.fr       */
+/*   Created: 2017/09/25 17:38:22 by Julien de M       #+#    #+#             */
+/*   Updated: 2017/10/02 17:23:08 by Julien de M      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-import glamorous from 'glamorous';
+const studentHelper = require('../helper/student');
 
-export const MainStyle = glamorous.div({
-  display: 'flex',
-  justifyContent: 'center',
-});
+const getAll = async (req, res) => {
+  try {
+    const ret = await studentHelper.getAll(req.user.accessToken);
+    res.send(ret);
+  } catch (err) {
+    res.sendStatus(500);
+  }
+};
 
-export const styles = (theme) => ({
-  paper: {
-    width: '60%',
-    marginTop: theme.spacing.unit * 3,
-    overflow: 'auto',
-  },
-});
+module.exports = {
+  getAll,
+};

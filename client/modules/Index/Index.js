@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Main.js                                            :+:      :+:    :+:   */
+/*   Index.js                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Julien de Magalhaes <julien@cinq-s.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 14:54:04 by Julien de M       #+#    #+#             */
-/*   Updated: 2017/10/02 15:16:16 by Julien de M      ###   ########.fr       */
+/*   Updated: 2017/10/02 17:05:01 by Julien de M      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ import { withStyles } from 'material-ui';
 
 import RecentProjects from './RecentProjects';
 import { getRecentProjects } from '../../redux/actions/project';
-import { MainStyle, styles } from '../Main/mainStyle';
+import { IndexStyle, styles } from '../Index/indexStyle';
 
 @withStyles(styles)
 @connect((state) => ({
@@ -25,7 +25,7 @@ import { MainStyle, styles } from '../Main/mainStyle';
 }), {
   getRecentProjects,
 })
-class Main extends Component {
+class Index extends Component {
   static propTypes = {
     getRecentProjects: PropTypes.func.isRequired,
     recentProjects: PropTypes.object.isRequired,
@@ -40,11 +40,11 @@ class Main extends Component {
     const { recentProjects, classes } = this.props;
 
     return (
-      <MainStyle>
+      <IndexStyle>
         <RecentProjects classes={classes} recentProjects={recentProjects} />
-      </MainStyle>
+      </IndexStyle>
     );
   }
 }
 
-export default Main;
+export default Index;

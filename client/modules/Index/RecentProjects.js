@@ -6,7 +6,7 @@
 /*   By: Julien de Magalhaes <julien@cinq-s.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 14:53:58 by Julien de M       #+#    #+#             */
-/*   Updated: 2017/10/02 14:54:44 by Julien de M      ###   ########.fr       */
+/*   Updated: 2017/10/02 17:23:08 by Julien de M      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ const RecentProjects = (props) => {
             return (
               <TableRow key={key}>
                 <TableCell>{time}</TableCell>
-                <TableCell>{project.getIn(['user', 'login'])}</TableCell>
+                <TableCell>{project.getIn(['student', 'login'])}</TableCell>
                 <TableCell>{project.getIn(['project', 'name'])}</TableCell>
                 <TableCell>{parseStatus(project.get('status'))}</TableCell>
                 {(project.get('status') === 'finished') &&

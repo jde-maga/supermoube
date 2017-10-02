@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   UserTable.js                                       :+:      :+:    :+:   */
+/*   StudentTable.js                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Julien de Magalhaes <julien@cinq-s.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 14:53:42 by Julien de M       #+#    #+#             */
-/*   Updated: 2017/10/02 15:02:45 by Julien de M      ###   ########.fr       */
+/*   Updated: 2017/10/02 17:23:08 by Julien de M      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ import PropTypes from 'prop-types';
 import { Table, Paper } from 'material-ui';
 import { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
 
-const UserTable = (props) => {
-  const { users, classes } = props;
+const StudentTable = (props) => {
+  const { students, classes } = props;
 
   return (
     <Paper className={classes.paper}>
@@ -34,15 +34,15 @@ const UserTable = (props) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {users && users.valueSeq().map((user, key) => {
+          {students && students.valueSeq().map((student, key) => {
             return (
               <TableRow key={key}>
                 <TableCell>Soon</TableCell>
-                <TableCell>{user.get('login')}</TableCell>
-                <TableCell>{user.get('displayname')}</TableCell>
+                <TableCell>{student.get('login')}</TableCell>
+                <TableCell>{student.get('displayname')}</TableCell>
                 <TableCell>Soon</TableCell>
-                <TableCell>{user.get('wallet')}</TableCell>
-                <TableCell>{user.get('correction_point')}</TableCell>
+                <TableCell>{student.get('wallet')}</TableCell>
+                <TableCell>{student.get('correction_point')}</TableCell>
                 <TableCell numeric>Soon</TableCell>
               </TableRow>
             );
@@ -53,9 +53,9 @@ const UserTable = (props) => {
   );
 };
 
-UserTable.propTypes = {
-  users: PropTypes.object.isRequired,
+StudentTable.propTypes = {
+  students: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
 };
 
-export default UserTable;
+export default StudentTable;

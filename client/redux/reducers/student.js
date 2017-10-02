@@ -1,10 +1,12 @@
 import { handleActions } from 'redux-actions';
 import { fromJS } from 'immutable';
 
-const initialState = fromJS({});
+const initialState = fromJS({
+  students: [],
+});
 
 const studentReducer = handleActions({
-  'SUCCESS:GET_ME': (state, { payload }) => fromJS(payload),
+  'SUCCESS:GET_ALL_STUDENTS': (state, { payload }) => state.set('students', fromJS(payload)),
 }, initialState);
 
 export default studentReducer;
