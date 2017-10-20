@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Student.js                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Julien de Magalhaes <julien@cinq-s.com>    +#+  +:+       +#+        */
+/*   By: jde-maga <jde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 14:53:48 by Julien de M       #+#    #+#             */
-/*   Updated: 2017/10/02 17:32:11 by Julien de M      ###   ########.fr       */
+/*   Updated: 2017/10/13 03:55:16 by jde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ class Student extends Component {
 
   render() {
     const { students, classes } = this.props;
-    
+
     return (
       <StudentStyle>
         <StudentTable classes={classes} students={students} />

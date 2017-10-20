@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Body.js                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Julien de Magalhaes <julien@cinq-s.com>    +#+  +:+       +#+        */
+/*   By: jde-maga <jde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 17:33:40 by Julien de M       #+#    #+#             */
-/*   Updated: 2017/10/02 17:39:59 by Julien de M      ###   ########.fr       */
+/*   Updated: 2017/10/12 04:56:13 by jde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ const BodyStyle = glamorous.div({
   position: 'absolute',
   top: '72px',
   width: '100%',
+  marginBottom: '30px',
 });
 
 const Body = ({ children }) => (

@@ -4,7 +4,15 @@ const getAllStudentsAPI = createAction('API:GET_ALL_STUDENTS');
 export const getAllStudents = () => (dispatch) => {
   dispatch(getAllStudentsAPI({
     method: 'get',
-    endpoint: '/api/getAllStudents',
+    endpoint: '/api/student',
+  }));
+};
+
+const getStudentAPI = createAction('API:GET_ONE_STUDENT');
+export const getStudent = ({ id }) => (dispatch) => {
+  dispatch(getStudentAPI({
+    method: 'get',
+    endpoint: `/api/student/${id}`,
   }));
 };
 

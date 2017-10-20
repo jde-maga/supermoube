@@ -8,13 +8,3 @@ export const getAllProjects = () => (dispatch) => {
   }));
 };
 
-const getRecentProjectsAPI = createAction('API:GET_RECENT_PROJECTS');
-export const getRecentProjects = () => (dispatch) => {
-  dispatch(getRecentProjectsAPI({
-    method: 'get',
-    endpoint: '/api/getRecentProjects',
-    query: {
-      sort: '-updated_at',
-    },
-  }));
-};

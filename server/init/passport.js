@@ -1,8 +1,7 @@
 const passport = require('passport');
 const Passport42Strategy = require('passport-42').Strategy;
-const fs = require('fs');
 
-const keys = JSON.parse(fs.readFileSync('/Users/julien/42keys.json', 'utf8'));
+const keys = require('../../42keys.json');
 
 passport.use(
   new Passport42Strategy({

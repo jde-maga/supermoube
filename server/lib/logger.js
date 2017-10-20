@@ -18,7 +18,7 @@ moment.tz.setDefault('Europe/Paris');
 const logger = new winston.Logger({
   transports: [
     new (winston.transports.Console)(),
-    new (winston.transports.File)({ filename: `logs/${moment()}_server.log` }),
+    //new (winston.transports.File)({ filename: `logs/${moment()}_server.log` }),
   ],
 });
 

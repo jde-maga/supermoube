@@ -10,26 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-const axios = require('axios');
-const Promise = require('bluebird');
-
-const api42 = axios.create({
-  baseURL: 'https://api.intra.42.fr/v2',
-});
-
-const getAll = async (token) => {
-  const res = await api42.get('users', {
-    headers: { Authorization: `Bearer ${token}` },
+const getAll = async (Student, page = 1) => {
+  const data = await Student.paginate({}, {
+    page,
+    limit: 100,
+    select: 'id login name.full wallet correctionPoints',
   });
-  const resPopulated = await Promise.map(res.data, async (student) => {
-    const studentPopulated = await api42.get(`users/${student.id}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    return studentPopulated.data;
-  });
-  return resPopulated;
+  return data;
+};
+
+const get = async (Student, id) => {
+  const data = await Student.findOne({ id });
+  return data;
 };
 
 module.exports = {
   getAll,
+  get,
 };

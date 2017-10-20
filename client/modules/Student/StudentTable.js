@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   StudentTable.js                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Julien de Magalhaes <julien@cinq-s.com>    +#+  +:+       +#+        */
+/*   By: jde-maga <jde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 14:53:42 by Julien de M       #+#    #+#             */
-/*   Updated: 2017/10/02 17:23:08 by Julien de M      ###   ########.fr       */
+/*   Updated: 2017/10/18 16:23:48 by jde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@ import PropTypes from 'prop-types';
 
 import { Table, Paper } from 'material-ui';
 import { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
+import { Link } from 'react-router-dom';
 
 const StudentTable = (props) => {
   const { students, classes } = props;
@@ -36,15 +37,17 @@ const StudentTable = (props) => {
         <TableBody>
           {students && students.valueSeq().map((student, key) => {
             return (
-              <TableRow key={key}>
-                <TableCell>Soon</TableCell>
-                <TableCell>{student.get('login')}</TableCell>
-                <TableCell>{student.get('displayname')}</TableCell>
-                <TableCell>Soon</TableCell>
-                <TableCell>{student.get('wallet')}</TableCell>
-                <TableCell>{student.get('correction_point')}</TableCell>
-                <TableCell numeric>Soon</TableCell>
-              </TableRow>
+              <Link key={key} to={`/student/${student.get('id')}`}>
+                <TableRow>
+                  <TableCell>Soon</TableCell>
+                  <TableCell>{student.get('login')}</TableCell>
+                  <TableCell>{student.getIn(['name', 'full'])}</TableCell>
+                  <TableCell>Soon</TableCell>
+                  <TableCell>{student.get('wallet')}</TableCell>
+                  <TableCell>{student.get('correctionPoints')}</TableCell>
+                  <TableCell numeric>Soon</TableCell>
+                </TableRow>
+              </Link>
             );
           })}
         </TableBody>
