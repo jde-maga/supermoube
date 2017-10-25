@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ProjectTable.js                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Julien de Magalhaes <julien@cinq-s.com>    +#+  +:+       +#+        */
+/*   By: jde-maga <jde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 14:53:58 by Julien de M       #+#    #+#             */
-/*   Updated: 2017/10/02 17:05:01 by Julien de M      ###   ########.fr       */
+/*   Updated: 2017/10/25 05:18:24 by jde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ const ProjectTable = (props) => {
               <TableRow key={key}>
                 <TableCell>{project.get('name')}</TableCell>
                 <TableCell>{project.get('tier')}</TableCell>
-                <TableCell>{project.get('project_sessions').first().get('estimate_time')}</TableCell>
+                <TableCell>{project.get('projectSessions') && project.get('projectSessions').first().get('estimate_time')}</TableCell>
                 <TableCell>Soon</TableCell>
                 <TableCell numeric>Soon</TableCell>
                 <TableCell numeric>Soon</TableCell>

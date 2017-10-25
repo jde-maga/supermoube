@@ -6,7 +6,7 @@
 /*   By: jde-maga <jde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/01 15:38:53 by Julien de M       #+#    #+#             */
-/*   Updated: 2017/10/19 02:10:54 by jde-maga         ###   ########.fr       */
+/*   Updated: 2017/10/25 05:03:09 by jde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ const recentProjectsController = require('../controller/recentProjects');
 const router = express.Router();
 
 router.get('/login', passport.authenticate('42'));
-router.get('/login/redirect',
+router.get(
+  '/login/redirect',
   passport.authenticate('42', { failureRedirect: '/ping' }),
   (req, res) => res.redirect('/'),
 );
@@ -30,8 +31,7 @@ router.get('/me', (req, res) => { res.send(req.user); });
 
 router.get('/api/recentProjects', recentProjectsController.getAll);
 
-router.get('/api/getRecentProjects', projectController.recentProjects);
-router.get('/api/getAllProjects', projectController.getAll);
+router.get('/api/projects', projectController.getAll);
 
 router.get('/api/student/:id', studentController.get);
 router.get('/api/student', studentController.getAll);

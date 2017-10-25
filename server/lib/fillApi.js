@@ -6,7 +6,7 @@
 /*   By: jde-maga <jde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 17:23:04 by marvin            #+#    #+#             */
-/*   Updated: 2017/10/20 03:10:08 by jde-maga         ###   ########.fr       */
+/*   Updated: 2017/10/25 05:14:59 by jde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,7 +254,7 @@ const projects = async () => {
       skills: project.skills,
       videos: project.videos,
       tags: project.tags,
-      projectSessions: project.sessions,
+      projectSessions: project.project_sessions,
     });
     await Project.save();
     console.log(`${i} / ${entriesLength} -- ${project.id} -- saved`);

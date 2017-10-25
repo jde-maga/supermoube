@@ -6,7 +6,7 @@
 /*   By: jde-maga <jde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 14:54:04 by Julien de M       #+#    #+#             */
-/*   Updated: 2017/10/09 03:17:46 by jde-maga         ###   ########.fr       */
+/*   Updated: 2017/10/25 05:07:18 by jde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ import { ProjectStyle, styles } from './projectStyle';
 @withStyles(styles)
 @connect((state) => ({
   projects: state.project.get('projects'),
+  nextPage: state.project.get('nextPage'),
 }), {
   getAllProjects,
 })
@@ -33,7 +34,8 @@ class Project extends Component {
   }
 
   componentDidMount() {
-    this.props.getAllProjects();
+    const { getAllProjects, nextPage } = this.props;
+    getAllProjects(nextPage);
   }
 
   render() {

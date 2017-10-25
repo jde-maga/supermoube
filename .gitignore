@@ -16,3 +16,6 @@ package-lock.json
 
 # logs
 logs/
+
+# mongo data
+data/
