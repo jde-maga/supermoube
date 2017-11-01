@@ -19,10 +19,14 @@ import ProjectTable from './ProjectTable';
 import { getAllProjects } from '../../redux/actions/project';
 import { ProjectStyle, styles } from './projectStyle';
 
+import Paginator from '../../components/Paginator/Paginator';
+import BackToTop from '../../components/BackToTop/BackToTop';
+
 @withStyles(styles)
 @connect((state) => ({
   projects: state.project.get('projects'),
   nextPage: state.project.get('nextPage'),
+  apiState: state.project.get('apiState'),
 }), {
   getAllProjects,
 })
@@ -31,19 +35,26 @@ class Project extends Component {
     getAllProjects: PropTypes.func.isRequired,
     projects: PropTypes.object.isRequired,
     classes: PropTypes.object.isRequired,
+    apiState: PropTypes.string.isRequired,
   }
 
   componentDidMount() {
     const { getAllProjects, nextPage } = this.props;
-    getAllProjects(nextPage);
+    getAllProjects({ page: nextPage });
   }
 
   render() {
-    const { projects, classes } = this.props;
+    const { projects, classes, apiState } = this.props;
 
     return (
       <ProjectStyle>
         <ProjectTable classes={classes} projects={projects} />
+        <Paginator
+          loadMoreContent={() => null}
+          classes={classes}
+          apiState={apiState}
+        />
+        <BackToTop classes={classes} />
       </ProjectStyle>
     );
   }

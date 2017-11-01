@@ -15,6 +15,8 @@ import glamorous from 'glamorous';
 export const ProjectStyle = glamorous.div({
   display: 'flex',
   justifyContent: 'center',
+  flexDirection: 'column',
+  alignItems: 'center',
 });
 
 export const styles = (theme) => ({
@@ -22,5 +24,15 @@ export const styles = (theme) => ({
     width: '60%',
     marginTop: theme.spacing.unit * 3,
     overflow: 'auto',
+  },
+  root: {
+    width: '100%',
+    backgroundColor: '#e6e6e6',
+    boxShadow: '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)'
+  },
+  button: {
+    position: 'fixed',
+    bottom: '50px',
+    right: '50px',
   },
 });
