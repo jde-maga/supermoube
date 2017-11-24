@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Index.js                                           :+:      :+:    :+:   */
+/*   Footer.js                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jde-maga <jde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/09 03:08:40 by jde-maga          #+#    #+#             */
-/*   Updated: 2017/11/23 03:09:07 by jde-maga         ###   ########.fr       */
+/*   Created: 2017/11/23 03:50:34 by jde-maga          #+#    #+#             */
+/*   Updated: 2017/11/23 03:54:04 by jde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { Footer } from 'antd/lib/layout';
 
-class Index extends Component {
-  static propTypes = {
-
-  }
-
-  componentDidMount() {
-
+class MyFooter extends Component {
+  constructor(props) {
+    super(props);
+    null;
   }
 
   render() {
     return (
-      <div>
-        Index
-      </div>
+      <Footer style={{ textAlign: 'center' }}>
+        jde-maga 2017
+      </Footer>
     );
   }
 }
 
-export default Index;
+export default MyFooter;

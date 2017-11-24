@@ -5,6 +5,7 @@
     "react"
   ],
   "plugins": [
+    ["import", { "libraryName": "antd", "style": "css" }],
     "transform-runtime",
     "transform-decorators-legacy",
     "react-hot-loader/babel"
