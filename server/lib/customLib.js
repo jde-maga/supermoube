@@ -28,8 +28,8 @@ const displayToken = async () => {
 
 (async () => {
   await displayToken();
-  await fill.projects();
-  //await fill.recentProjects();
- // await fill.students();
+  //await fill.projects();
+  await fill.recentProjects();
+  await fill.students();
   process.exit();
 })();
