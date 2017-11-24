@@ -36,17 +36,7 @@ class CustomHeader extends Component {
     return (
       <Header className="header">
         <div className="logo" />
-        <Menu
-          theme="dark"
-          mode="horizontal"
-          defaultSelectedKeys={['2']}
-          style={{ lineHeight: '64px' }}
-        >
-          <Item key="1">SUPERmoube</Item>
-          <Item key="2">42Feed</Item>
-          <Item key="3">Etudiants</Item>
-          <Item key="4">Projets</Item>
-        </Menu>
+        SUPERMOUBE
       </Header>
     );
   }

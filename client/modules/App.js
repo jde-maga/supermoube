@@ -19,6 +19,9 @@ import store from '../redux/store';
 
 import Body from './Body';
 import Index from './Index/Index';
+
+import Feed from './Feed/Feed';
+
 import RecentProjects from './RecentProjects/RecentProjects';
 import Student from './Student/Student';
 import OneStudent from './OneStudent/OneStudent';
@@ -30,9 +33,9 @@ const App = () => (
       <BrowserRouter>
         <Body>
           <Switch>
-            <Route path="/recentProjects" component={RecentProjects} />
-            <Route exact path="/student" component={Student} />
-            <Route path="/student/:id" component={OneStudent} />
+            <Route path="/feed" component={Feed} />
+            <Route exact path="/students" component={Student} />
+            <Route path="/students/:id" component={OneStudent} />
             <Route path="/projects" component={Project} />
             <Route component={Index} />
           </Switch>

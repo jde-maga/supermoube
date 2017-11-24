@@ -23,11 +23,11 @@ const { SubMenu, Item } = Menu;
 const { Content, Sider } = Layout;
 
 const Body = ({ children }) => (
-  <Layout>
+  <Layout style={{ height: '100vh' }}>
     <Header />
     <Layout>
       <SideMenu />
-      <Layout style={{ padding: '24px 24px 24px' }}>
+      <Layout style={{ padding: '24px 24px 0 24px' }}>
         <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: 280 }}>
           {children}
         </Content>

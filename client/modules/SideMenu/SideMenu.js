@@ -13,52 +13,58 @@
 import React, { Component } from 'react';
 import { Icon } from 'antd';
 import { Sider } from 'antd/lib/layout';
-import Menu, { SubMenu, Item } from 'antd/lib/menu';
+import Menu, { Item } from 'antd/lib/menu';
+import { Link } from 'react-router-dom';
 
 class SideMenu extends Component {
   constructor(props) {
     super(props);
-    const url = String(window.location.href);
+    this.state = {
+      defaultKey: window.location.pathname.replace(/^\/([^/]*).*$/, '$1') || 'home',
+      collapsed: false,
+    };
   }
 
-  state = { collapsed: false }
-
   render() {
+    const { collapsed, defaultKey } = this.state;
+
     return (
       <Sider
         collapsible
-        collapsed={this.state.collapsed}
-        onCollapse={() => this.setState({ collapsed: !this.state.collapsed })}
+        collapsed={collapsed}
+        onCollapse={() => this.setState({ collapsed: !collapsed })}
       >
-        <div className="logo" />
-        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-          <Menu.Item key="1">
-            <Icon type="pie-chart" />
-            <span>Option 1</span>
-          </Menu.Item>
-          <Menu.Item key="2">
-            <Icon type="desktop" />
-            <span>Option 2</span>
-          </Menu.Item>
-          <SubMenu
-            key="sub1"
-            title={<span><Icon type="user" /><span>User</span></span>}
-          >
-            <Menu.Item key="3">Tom</Menu.Item>
-            <Menu.Item key="4">Bill</Menu.Item>
-            <Menu.Item key="5">Alex</Menu.Item>
-          </SubMenu>
-          <SubMenu
-            key="sub2"
-            title={<span><Icon type="team" /><span>Team</span></span>}
-          >
-            <Menu.Item key="6">Team 1</Menu.Item>
-            <Menu.Item key="8">Team 2</Menu.Item>
-          </SubMenu>
-          <Menu.Item key="9">
-            <Icon type="file" />
-            <span>File</span>
-          </Menu.Item>
+        <Menu theme="dark" defaultSelectedKeys={[defaultKey]} mode="inline">
+          <Item key="home">
+            <Link to="/">
+              <Icon type="home" />
+              <span>Home</span>
+            </Link>
+          </Item>
+          <Item key="feed">
+            <Link to="/feed">
+              <Icon type="forward" />
+              <span>42 Feed</span>
+            </Link>
+          </Item>
+          <Item key="students">
+            <Link to="/students">
+              <Icon type="user" />
+              <span>Etudiants</span>
+            </Link>
+          </Item>
+          <Item key="projects">
+            <Link to="/projects">
+              <Icon type="appstore" />
+              <span>Projets</span>
+            </Link>
+          </Item>
+          <Item key="skills">
+            <Link to="/skills">
+              <Icon type="star" />
+              <span>Competences</span>
+            </Link>
+          </Item>
         </Menu>
       </Sider>
     );
