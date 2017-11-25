@@ -16,6 +16,8 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 import { Table } from 'antd';
 import Tabs, { TabPane } from 'antd/lib/tabs';
+import FontAwesome from 'react-fontawesome';
+import { Link } from 'react-router-dom';
 
 import parseStatus from '../../lib/parseStatus';
 
@@ -53,7 +55,7 @@ class RecentProjects extends Component {
       dataIndex: 'login',
       key: 'login',
       width: '200px',
-      fixed: 'center',
+      render: (text) => (<Link to="">{text}</Link>),
     }, {
       title: 'Projet',
       dataIndex: 'project',
@@ -64,12 +66,38 @@ class RecentProjects extends Component {
       key: 'status',
       fixed: 'right',
       width: '125px',
+      render: (text) => parseStatus(text),
+    }, {
+      title: 'Note',
+      key: 'mark',
+      fixed: 'right',
+      width: '125px',
+      render: (text, record) => {
+        if (record.status === 'finished') {
+          return (
+            <span>
+              {record.valiated
+                ? <FontAwesome name="check" />
+                : <FontAwesome name="times" />
+              }&nbsp;
+              {record.mark || 0}
+            </span>
+          );
+        } else if (record.status === 'in_progress') {
+          return (<FontAwesome name="play" />);
+        } else if (record.status === 'waiting_for_correction') {
+          return (<FontAwesome name="upload" />);
+        }
+        return '-';
+      },
     }];
     const data = (recentProjects.first()) && recentProjects.first().valueSeq().map((project) => ({
       time: project.getIn(['updatedAt', 'time']),
       login: project.getIn(['user', 'login']),
       project: project.getIn(['project', 'name']),
-      status: parseStatus(project.get('status')),
+      status: project.get('status'),
+      mark: project.get('mark'),
+      validated: project.get('validated'),
     }));
 
     return (
