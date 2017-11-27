@@ -11,10 +11,10 @@
 /* ************************************************************************** */
 
 const getAll = async (Student, page = 1) => {
-  const data = await Student.paginate({}, {
+  const data = await Student.paginate({ login: 'jde-maga' }, {
     page,
     limit: 150,
-    select: 'id login name.full wallet correctionPoints',
+    select: 'id login name.full wallet correctionPoints pool',
   });
   return data;
 };

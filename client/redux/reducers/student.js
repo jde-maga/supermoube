@@ -6,13 +6,16 @@ const initialState = fromJS({
   students: [],
   one: {},
   oneApiState: 'OK',
+  nextPage: 1,
 });
 
 const studentReducer = handleActions({
-  GET_ALL_STUDENTS: (state) => state.set('apiState', 'loading'),
+  GET_ALL_STUDENTS: (state) => state
+    .set('apiState', 'loading')
+    .set('nextPage', state.get('nextPage') + 1),
 
   'SUCCESS:GET_ALL_STUDENTS': (state, { payload }) => state
-    .mergeIn(['students'], fromJS(payload))
+    .set('students', fromJS([...state.get('students'), ...payload]))
     .set('apiState', 'OK'),
 
   GET_ONE_STUDENT: (state) => state.set('oneApiState', 'loading'),

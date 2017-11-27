@@ -1,10 +1,11 @@
 import { createAction } from 'redux-actions';
 
 const getAllStudentsAPI = createAction('API:GET_ALL_STUDENTS');
-export const getAllStudents = () => (dispatch) => {
+export const getAllStudents = (data) => (dispatch) => {
   dispatch(getAllStudentsAPI({
     method: 'get',
     endpoint: '/api/student',
+    query: { page: data.page },
   }));
 };
 

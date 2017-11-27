@@ -13,21 +13,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import _ from 'lodash';
 import { Table } from 'antd';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router-dom';
 import moment from 'moment-timezone';
-import { Tabs, Button } from 'antd';
-
-const TabPane = Tabs.TabPane;
-
-import Paginator from '../../components/Paginator/Paginator';
 
 import parseStatus from '../../lib/parseStatus';
 
 import { getRecentProjects } from '../../redux/actions/recentProject';
-import { Input } from 'antd';
 
 @connect((state) => ({
   recentProjects: state.recentProject.get('recentProjects'),
@@ -44,29 +37,13 @@ class RecentProjects extends Component {
     recentProjects: PropTypes.object.isRequired,
   }
 
-  state = {
-    filterLogin: null,
-    filterLoginVisible: false,
-  }
-
   componentDidMount() {
     const { nextPage } = this.props;
     if (nextPage === 1) this.props.getRecentProjects({ page: 1 });
   }
 
-  searchLogin = () => {
-    const { filterLogin } = this.state;
-    const reg = new RegExp(filterLogin, 'gi');
-    this.setState({
-      filterLoginVisible: false,
-      data: data.map((record) => {
-        console.log(record);
-      }).filter(record => !!record),
-    });
-  }
   render() {
     const { recentProjects, nextPage, apiState } = this.props;
-    const { filterLogin, filterLoginVisible } = this.state;
 
     const columns = [{
       title: 'Heure',
@@ -78,26 +55,13 @@ class RecentProjects extends Component {
       dataIndex: 'login',
       key: 'login',
       width: '15%',
-      filterDropdown: (
-        <div className="custom-filter-dropdown">
-          <Input
-            ref={(ele) => { this.searchInput = ele; }}
-            placeholder="Search Login"
-            value={filterLogin}
-            onChange={(e) => this.setState({ filterLogin: e.target.value })}
-            onPressEnter={this.searchLogin}
-          />
-          <Button type="primary" onClick={this.searchLogin}>Search</Button>
-        </div>
-      ),
-      filterDropdownVisible: filterLoginVisible,
-      onFilterDropdownVisibleChange: (visible) => this.setState({ filterLoginVisible: visible }),
       render: (text) => (<Link to={`students/${text}`}>{text}</Link>),
     }, {
       title: 'Projet',
       dataIndex: 'project',
       key: 'project',
       width: '45%',
+      render: (text, record) => (<Link to={`projects/${record.projectId}`}>{text}</Link>),
     }, {
       title: 'Status',
       dataIndex: 'status',
@@ -153,6 +117,7 @@ class RecentProjects extends Component {
       status: project.get('status'),
       mark: project.get('mark'),
       validated: project.get('validated'),
+      projectId: project.getIn(['project', 'id']),
     }));
 
     return (
