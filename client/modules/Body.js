@@ -6,7 +6,7 @@
 /*   By: jde-maga <jde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 17:33:40 by Julien de M       #+#    #+#             */
-/*   Updated: 2017/11/23 04:14:24 by jde-maga         ###   ########.fr       */
+/*   Updated: 2017/11/27 00:31:36 by jde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ const { SubMenu, Item } = Menu;
 const { Content, Sider } = Layout;
 
 const Body = ({ children }) => (
-  <Layout style={{ height: '100vh' }}>
+  <Layout>
     <Header />
     <Layout>
       <SideMenu />

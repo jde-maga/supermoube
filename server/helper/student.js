@@ -13,7 +13,7 @@
 const getAll = async (Student, page = 1) => {
   const data = await Student.paginate({}, {
     page,
-    limit: 100,
+    limit: 150,
     select: 'id login name.full wallet correctionPoints',
   });
   return data;
