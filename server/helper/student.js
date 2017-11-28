@@ -11,16 +11,16 @@
 /* ************************************************************************** */
 
 const getAll = async (Student, page = 1) => {
-  const data = await Student.paginate({ login: 'jde-maga' }, {
+  const data = await Student.paginate({ cursus: { $elemMatch: { cursus_id: 1 } } }, {
     page,
     limit: 150,
-    select: 'id login name.full wallet correctionPoints pool',
+    select: 'id login name.full wallet correctionPoints pool cursus',
   });
   return data;
 };
 
 const get = async (Student, id) => {
-  const data = await Student.findOne({ id });
+  const data = await Student.findOne({ login: id });
   return data;
 };
 
