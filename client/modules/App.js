@@ -6,7 +6,7 @@
 /*   By: jde-maga <jde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 14:54:18 by Julien de M       #+#    #+#             */
-/*   Updated: 2017/11/27 17:13:10 by jde-maga         ###   ########.fr       */
+/*   Updated: 2017/12/01 15:49:28 by jde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,10 @@ import Body from './Body';
 import Index from './Index/Index';
 
 import Feed from './Feed/Feed';
-
-import RecentProjects from './RecentProjects/RecentProjects';
-import Student from './Student/Student';
-import OneStudent from './OneStudent/OneStudent';
+import StudentsTable from './StudentsTable/StudentsTable';
+import ProjectsTable from './ProjectsTable/ProjectsTable';
 import Project from './Project/Project';
-import StudentsTable from './StudentsTable/StudentsTable'
+import Student from './Student/Student';
 
 const App = () => (
   <AppContainer>
@@ -36,8 +34,9 @@ const App = () => (
           <Switch>
             <Route path="/feed" component={Feed} />
             <Route exact path="/students" component={StudentsTable} />
-            <Route path="/students/:id" component={OneStudent} />
-            <Route path="/projects" component={Project} />
+            <Route path="/students/:id" component={Student} />
+            <Route exact path="/projects" component={ProjectsTable} />
+            <Route path="/projects/:id" component={Project} />
             <Route component={Index} />
           </Switch>
         </Body>

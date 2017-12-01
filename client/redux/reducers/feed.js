@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   recentProject.js                                   :+:      :+:    :+:   */
+/*   feed.js                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jde-maga <jde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 03:40:30 by jde-maga          #+#    #+#             */
-/*   Updated: 2017/11/27 06:07:36 by jde-maga         ###   ########.fr       */
+/*   Updated: 2017/12/01 15:53:19 by jde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 import { handleActions } from 'redux-actions';
 import { fromJS } from 'immutable';
-import moment from 'moment-timezone';
 
 const initialState = fromJS({
-  recentProjects: [],
+  feed: [],
   nextPage: 1,
   apiState: 'OK',
 });
 
 const projectReducer = handleActions({
 
-  GET_RECENT_PROJECTS: (state) => state
+  GET_FEED: (state) => state
     .set('apiState', 'loading')
     .set('nextPage', state.get('nextPage') + 1),
 
-  'SUCCESS:GET_RECENT_PROJECTS': (state, { payload }) => state
-    .set('recentProjects', fromJS([...state.get('recentProjects'), ...payload]))
+  'SUCCESS:GET_FEED': (state, { payload }) => state
+    .set('feed', fromJS([...state.get('feed'), ...payload]))
     .set('apiState', 'OK'),
 }, initialState);
 

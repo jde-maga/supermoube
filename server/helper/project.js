@@ -6,7 +6,7 @@
 /*   By: jde-maga <jde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 13:49:07 by Julien de M       #+#    #+#             */
-/*   Updated: 2017/11/27 05:49:25 by jde-maga         ###   ########.fr       */
+/*   Updated: 2017/12/01 15:09:22 by jde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,12 @@ const getAll = async (Project, page) => {
   return data;
 };
 
+const get = async (Student, id) => {
+  const data = await Student.findOne({ slug: id });
+  return data;
+};
 
 module.exports = {
   getAll,
+  get,
 };

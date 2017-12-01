@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   recentProjects.js                                  :+:      :+:    :+:   */
+/*   feed.js                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jde-maga <jde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/08 02:58:23 by marvin            #+#    #+#             */
-/*   Updated: 2017/10/12 03:22:41 by jde-maga         ###   ########.fr       */
+/*   Updated: 2017/12/01 15:55:52 by jde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-const recentProjectsHelper = require('../helper/recentProjects');
+const feedHelper = require('../helper/feed');
 
 const RecentProject = require('../models/RecentProject');
 
@@ -18,8 +18,8 @@ const getAll = async (req, res, next) => {
   try {
     const { query } = req;
 
-    const recentProjectsPage = await recentProjectsHelper.getAll(RecentProject, query.page);
-    return res.json(recentProjectsPage.docs);
+    const feedPage = await feedHelper.getAll(RecentProject, query.page);
+    return res.json(feedPage.docs);
   } catch (err) {
     return next(err);
   }

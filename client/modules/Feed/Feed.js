@@ -6,7 +6,7 @@
 /*   By: jde-maga <jde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 14:54:04 by Julien de M       #+#    #+#             */
-/*   Updated: 2017/11/29 05:21:09 by jde-maga         ###   ########.fr       */
+/*   Updated: 2017/12/01 15:57:09 by jde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,30 +20,30 @@ import moment from 'moment-timezone';
 
 import parseStatus from '../../lib/parseStatus';
 
-import { getRecentProjects } from '../../redux/actions/recentProject';
+import { getFeed } from '../../redux/actions/feed';
 
 @connect((state) => ({
-  recentProjects: state.recentProject.get('recentProjects'),
-  nextPage: state.recentProject.get('nextPage'),
-  apiState: state.recentProject.get('apiState'),
+  feed: state.feed.get('feed'),
+  nextPage: state.feed.get('nextPage'),
+  apiState: state.feed.get('apiState'),
 }), {
-  getRecentProjects,
+  getFeed,
 })
-class RecentProjects extends Component {
+class Feed extends Component {
   static propTypes = {
-    getRecentProjects: PropTypes.func.isRequired,
+    getFeed: PropTypes.func.isRequired,
     nextPage: PropTypes.number.isRequired,
     apiState: PropTypes.string.isRequired,
-    recentProjects: PropTypes.object.isRequired,
+    feed: PropTypes.object.isRequired,
   }
 
   componentDidMount() {
     const { nextPage } = this.props;
-    if (nextPage === 1) this.props.getRecentProjects({ page: 1 });
+    if (nextPage === 1) this.props.getFeed({ page: 1 });
   }
 
   render() {
-    const { recentProjects, nextPage, apiState } = this.props;
+    const { feed, nextPage, apiState } = this.props;
 
     const columns = [{
       title: 'Heure',
@@ -110,7 +110,7 @@ class RecentProjects extends Component {
         return '-';
       },
     }];
-    const data = recentProjects && recentProjects.valueSeq().map((project) => ({
+    const data = feed && feed.valueSeq().map((project) => ({
       time: `${moment(project.getIn(['updatedAt', 'day'])).format('MM-DD')} ${project.getIn(['updatedAt', 'time'])}`,
       login: project.getIn(['user', 'login']),
       project: project.getIn(['project', 'name']),
@@ -128,7 +128,7 @@ class RecentProjects extends Component {
           pagination={{ pageSize: 15 }}
           onChange={(pagination) => {
             if (((nextPage - 1) * 10) - pagination.current <= 3) {
-              this.props.getRecentProjects({ page: nextPage });
+              this.props.getFeed({ page: nextPage });
             }
           }}
           loading={apiState === 'loading'}
@@ -136,7 +136,7 @@ class RecentProjects extends Component {
             <div style={{ textAlign: 'center' }}>
               {apiState === 'loading'
                 ? <FontAwesome name="spinner" spin />
-                : <span>Tallying {recentProjects.size} entries</span>
+                : <span>Tallying {feed.size} entries</span>
               }
             </div>
           )}
@@ -146,4 +146,4 @@ class RecentProjects extends Component {
   }
 }
 
-export default RecentProjects;
+export default Feed;

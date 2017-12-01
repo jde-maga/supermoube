@@ -6,17 +6,17 @@
 /*   By: jde-maga <jde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/01 15:38:53 by Julien de M       #+#    #+#             */
-/*   Updated: 2017/10/25 05:03:09 by jde-maga         ###   ########.fr       */
+/*   Updated: 2017/12/01 15:59:30 by jde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 const express = require('express');
 const passport = require('passport');
-const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
+const { ensureLoggedIn } = require('connect-ensure-login');
 
 const projectController = require('../controller/project');
 const studentController = require('../controller/student');
-const recentProjectsController = require('../controller/recentProjects');
+const feedController = require('../controller/feed');
 
 const router = express.Router();
 
@@ -29,8 +29,9 @@ router.get(
 
 router.get('/me', (req, res) => { res.send(req.user); });
 
-router.get('/api/recentProjects', recentProjectsController.getAll);
+router.get('/api/feed', feedController.getAll);
 
+router.get('/api/projects/:id', projectController.get);
 router.get('/api/projects', projectController.getAll);
 
 router.get('/api/student/:id', studentController.get);

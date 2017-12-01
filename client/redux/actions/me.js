@@ -7,5 +7,3 @@ export const getMe = () => (dispatch) => {
     endpoint: '/me',
   }));
 };
-
-export const ping = createAction('PING');
