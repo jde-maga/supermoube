@@ -6,19 +6,22 @@
 /*   By: jde-maga <jde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 17:03:28 by jde-maga          #+#    #+#             */
-/*   Updated: 2017/12/01 14:22:48 by jde-maga         ###   ########.fr       */
+/*   Updated: 2017/12/01 17:16:59 by jde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Table } from 'antd';
+import { Table, Checkbox } from 'antd';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router-dom';
 import moment from 'moment-timezone';
 
 import { getAllStudents } from '../../redux/actions/student';
+
+const CheckboxGroup = Checkbox.Group;
+
 
 @connect((state) => ({
   students: state.student.get('students'),
@@ -89,6 +92,18 @@ class StudentsTable extends Component {
 
     return (
       <div>
+        <div>
+          <CheckboxGroup
+            options={[
+              { label: 'Apple', value: 'Apple' },
+              { label: 'Pear', value: 'Pear' },
+              { label: 'Orange', value: 'Orange', disabled: false },
+            ]}
+            defaultValue={['Apple']}
+            onChange={(e) => { console.log(proc); }}
+          />
+        </div>
+
         <Table
           columns={columns}
           dataSource={data && data.toJS()}

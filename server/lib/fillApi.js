@@ -6,7 +6,7 @@
 /*   By: jde-maga <jde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 17:23:04 by marvin            #+#    #+#             */
-/*   Updated: 2017/10/25 05:14:59 by jde-maga         ###   ########.fr       */
+/*   Updated: 2017/12/01 17:15:51 by jde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ const RecentProjectModel = require('../models/RecentProject');
 const StudentModel = require('../models/Student');
 const CursusModel = require('../models/Cursus');
 const ProjectModel = require('../models/Project');
+const CampusModel = require('../models/Campus');
 
 const api42 = axios.create({
   baseURL: 'https://api.intra.42.fr/v2',
@@ -263,9 +264,50 @@ const projects = async () => {
   console.log('finished fill of projects');
 };
 
+const campi = async () => {
+  console.log('starting fill on campi');
+
+  const page = {
+    index: 1,
+    currentSize: 0,
+    maxSize: 100,
+  };
+  let entries = [];
+  let entriesLength = 0;
+  let i = 1;
+
+  console.log('calculating fill size...');
+  do {
+    const accessToken = await getAccessToken();
+
+    const { data } = await api42.get(`campus?&per_page=100&page=${page.index}`, { headers: { Authorization: `Bearer ${accessToken}` } });
+    entries = [...entries, ...data];
+    page.currentSize = data.length;
+    page.index++;
+    entriesLength += data.length;
+    console.log(`so far : ${entriesLength} entries`);
+  } while (page.currentSize === page.maxSize);
+  console.log(`found ${entriesLength} entries`);
+
+  await Promise.map(entries, (async (campus) => {
+    const Campus = new CampusModel({
+      id: campus.id,
+      name: campus.name,
+      timezone: campus.time_zone,
+      language: campus.language,
+      userCount: campus.users_count,
+    });
+    await Campus.save();
+    console.log(`${i} / ${entriesLength} -- ${campus.id} - ${campus.name} -- saved`);
+    i++;
+  }));
+  console.log('finished fill of campi');
+};
+
 module.exports = {
   students,
   cursi,
   recentProjects,
   projects,
+  campi,
 };

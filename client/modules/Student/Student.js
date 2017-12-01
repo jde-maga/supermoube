@@ -6,7 +6,7 @@
 /*   By: jde-maga <jde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/18 09:25:33 by jde-maga          #+#    #+#             */
-/*   Updated: 2017/12/01 15:48:29 by jde-maga         ###   ########.fr       */
+/*   Updated: 2017/12/01 16:12:55 by jde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ class Student extends Component {
   render() {
     const { student } = this.props;
     const { cursusTab } = this.state;
-
+    console.log(student.toJS());
     const columns = [{
       title: 'Projet',
       dataIndex: 'name',

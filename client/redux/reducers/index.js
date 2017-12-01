@@ -5,6 +5,7 @@ import me from './me';
 import project from './project';
 import student from './student';
 import feed from './feed';
+import cursus from './cursus';
 
 export default combineReducers({
   form: formReducer,
@@ -12,4 +13,5 @@ export default combineReducers({
   project,
   student,
   feed,
+  cursus,
 });

@@ -6,7 +6,7 @@
 /*   By: jde-maga <jde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/04 13:59:57 by Julien de M       #+#    #+#             */
-/*   Updated: 2017/10/25 05:15:20 by jde-maga         ###   ########.fr       */
+/*   Updated: 2017/12/01 17:19:16 by jde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ const update = require('./updateApi');
 const getAccessToken = require('../init/oauth2');
 
 require('../init/mongo');
-const CursusModel = require('../models/Cursus');
 
 const displayToken = async () => {
   const token = await getAccessToken();
@@ -29,7 +28,8 @@ const displayToken = async () => {
 (async () => {
   await displayToken();
   //await fill.projects();
-  await fill.recentProjects();
-  await fill.students();
+  //await fill.recentProjects();
+  //await fill.students();
+  //await fill.cursi();
   process.exit();
 })();

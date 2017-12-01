@@ -6,13 +6,13 @@
 /*   By: jde-maga <jde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 17:33:40 by Julien de M       #+#    #+#             */
-/*   Updated: 2017/12/01 16:03:42 by jde-maga         ###   ########.fr       */
+/*   Updated: 2017/12/01 17:38:16 by jde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Layout, Menu, Icon } from 'antd';
+import { Layout, Menu } from 'antd';
 
 import Header from './Header/Header';
 import SideMenu from './SideMenu/SideMenu';
