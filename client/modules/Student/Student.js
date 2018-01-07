@@ -53,6 +53,41 @@ class Student extends Component {
     this.props.getStudent({ id: this.props.match.params.id });
   }
 
+  expandedRowRender = () => {
+    console.log('test');
+    const columns = [
+      { title: 'Date', dataIndex: 'date', key: 'date' },
+      { title: 'Name', dataIndex: 'name', key: 'name' },
+      { title: 'Status', key: 'state', render: () => <span>Finished</span> },
+      { title: 'Upgrade Status', dataIndex: 'upgradeNum', key: 'upgradeNum' },
+      {
+        title: 'Action',
+        dataIndex: 'operation',
+        key: 'operation',
+        render: () => (
+          'Hello'
+        ),
+      },
+    ];
+  
+    const data = [];
+    for (let i = 0; i < 3; ++i) {
+      data.push({
+        key: i,
+        date: '2014-12-24 23:12:00',
+        name: 'This is production name',
+        upgradeNum: 'Upgraded: 56',
+      });
+    }
+    return (
+      <Table
+        columns={columns}
+        dataSource={data}
+        pagination={false}
+      />
+    );
+  };
+
   render() {
     const { student } = this.props;
     const { cursusTab } = this.state;
@@ -166,6 +201,8 @@ class Student extends Component {
                   columns={columns}
                   dataSource={data && data.toJS()}
                   pagination={false}
+                  expandedRowRender={this.expandedRowRender}
+                  expandedRowKeys={[]}
                   footer={() => (
                     <div style={{ textAlign: 'center' }}>OK</div>
                   )}

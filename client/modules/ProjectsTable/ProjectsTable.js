@@ -55,6 +55,11 @@ render() {
     title: 'Durée',
     dataIndex: 'duration',
     key: 'duration',
+    render: (text) => {
+      const days = text / 60 / 60 / 24;
+      if (days < 1) return `${days * 24} h`;
+      return `${days} d`;
+    }
   }, {
     title: 'Corrections',
     dataIndex: 'corrections',
